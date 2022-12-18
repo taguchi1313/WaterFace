@@ -144,7 +144,7 @@ function touchOnMoment(){
 //--------------------
 function touchOffMoment(){
   console.log("touchOffMoment");
-  if(mouseCount < 5 && stream.length < 8){
+  if(mouseCount < 5 && stream.length < 7){
     toutchDraw("stream");
   }else{
     toutchDraw("ripple");
@@ -216,7 +216,7 @@ function toutchDraw(type){
       touchSound(0);
       break;
     case "stream":
-      //waterStream_push(mouseX,mouseY);
+      waterStream_push(mouseX,mouseY);
       waterRipple_push(mouseX,mouseY);
       break;
     case "bubble":
