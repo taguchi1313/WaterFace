@@ -216,7 +216,7 @@ function toutchDraw(type){
       touchSound(0);
       break;
     case "stream":
-      waterStream_push(mouseX,mouseY);
+      //waterStream_push(mouseX,mouseY);
       waterRipple_push(mouseX,mouseY);
       break;
     case "bubble":
