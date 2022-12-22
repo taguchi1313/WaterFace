@@ -279,14 +279,7 @@ function touchSound(type){
       a = random([0,1,2]); break;
     case 2:
       a = 0;
-      if(
-        sound[200].isPlaying() || 
-        sound[210].isPlaying() || 
-        sound[220].isPlaying() || 
-        sound[230].isPlaying() 
-        ) {
-        soundPlay = false;
-      }
+      soundPlay = false;
   }
   if(soundPlay){
     let soundType = type*100 + bgmPart*10 + a;
