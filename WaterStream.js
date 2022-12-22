@@ -11,7 +11,7 @@ class WaterStream {
 // 基本ステータス
 //--------------------------
     // ●基本設定
-    this.f = 1; // 最小移動単位
+    this.f = 2; // 最小移動単位
     this.id = int(random(10000));
     this.weight = [];
     // 座標を格納する配列
@@ -65,7 +65,7 @@ class WaterStream {
         }else{
           this.moveCountTarget = y;
         }
-        this.sp = 6;
+        this.sp = int(6/this.f);
         break;
       case "branch":
         this.x[0] = x;
@@ -111,7 +111,7 @@ class WaterStream {
     noStroke();
     // メインフェーズの描画
     for (let i = 0; i < this.x.length; i++) {
-      ellipse(this.x[i], this.y[i], this.weight[i], this.weight[i]);
+      circle(this.x[i], this.y[i], this.weight[i]);
     }
   }
 
@@ -120,7 +120,9 @@ class WaterStream {
 //--------------------------
   pointWeight() {
     for (let i = 0; i <= this.x.length; i++) {
-      this.weight[i] = map(noise((frameCount/25)-(i/500)-this.id),0,1,this.weightDefault*0.2,this.weightDefault*1.1);
+      //let n = this.id+(frameCount/25)-(i/500/this.f);
+      let n = (this.id - i)/(400/this.f)+frameCount/20;
+      this.weight[i] = map(noise(n),0,1,this.weightDefault*0.2,this.weightDefault*1.1);
       if(i < this.weightStart) {
         this.weight[i] = map(i/this.weightStart,0,1,this.weight[i]*0.6,this.weight[i]);
       }
