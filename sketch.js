@@ -8,7 +8,7 @@ let v;
 // 音素材
 let bgm_00,bgm_01,bgm_02,bgm_03;
 let sound = [];
-let soundVol = 0.3;
+let soundVol = 0.03;
 // 音楽カウント
 let bgmCount,bgmPart;
 let bgmCountSet = 30*3.8;
@@ -75,6 +75,10 @@ function preload() {
   sound[130] = loadSound('assets/sound/sound_130');
   sound[131] = loadSound('assets/sound/sound_131');
   sound[132] = loadSound('assets/sound/sound_132');
+  sound[200] = loadSound('assets/sound/sound_200');
+  sound[210] = loadSound('assets/sound/sound_210');
+  sound[220] = loadSound('assets/sound/sound_220');
+  sound[230] = loadSound('assets/sound/sound_230');
 }
 
 //--------------------
@@ -132,7 +136,6 @@ function touchOnOff(){
 // touchOnOff クリックした瞬間
 //--------------------
 function touchOnMoment(){
-  console.log("touchOnMoment");
   // 記録
   mouseXY = [mouseX, mouseY];
   // スリープモードをオフ
@@ -143,7 +146,6 @@ function touchOnMoment(){
 // touchOnOff 離した瞬間
 //--------------------
 function touchOffMoment(){
-  console.log("touchOffMoment");
   if(mouseCount < 5 && stream.length < 7){
     toutchDraw("stream");
   }else{
@@ -156,10 +158,8 @@ function touchOffMoment(){
 // touchOnOff 長押し
 //--------------------
 function touchOnLong(){
-  console.log("touchOnLong");
   let a = dist(mouseX, mouseY, mouseXY[0], mouseXY[1]);
-  let b = mouseY < mouseXY[1];
-  if(a > 10 && b){
+  if(a > 10){
     toutchDraw("bubble");
   }
   // 記録
@@ -171,7 +171,6 @@ function touchOnLong(){
 // touchOnOff 押してない
 //--------------------
 function touchOffLong(){
-  console.log("touchOffLong");
   // 非スリープモード
   if(!sleep){
     sleepCount++;
@@ -220,7 +219,7 @@ function toutchDraw(type){
       waterRipple_push(mouseX,mouseY);
       break;
     case "bubble":
-      waterBubble_push(random(mouseX-width/8,mouseX+width/8),height+30);
+      waterBubble_push(random(mouseX-100,mouseX+100),random(mouseY-20,mouseY+150));
   }
 }
 
@@ -272,14 +271,28 @@ function mainDraw(){
 //--------------------------
 function touchSound(type){
   let a;
+  let soundPlay = true;
   switch(type){
     case 0:
       a = random([0,1,/*2,*//*3,*/4,5]);break;
     case 1:
       a = random([0,1,2]); break;
+    case 2:
+      a = 0;
+      if(
+        sound[200].isPlaying() || 
+        sound[210].isPlaying() || 
+        sound[220].isPlaying() || 
+        sound[230].isPlaying() 
+        ) {
+        soundPlay = false;
+      }
   }
-  let soundType = type*100 + bgmPart*10 + a;
-  sound[soundType].play(0,1,soundVol*1);
+  if(soundPlay){
+    let soundType = type*100 + bgmPart*10 + a;
+    sound[soundType].play(0,1,soundVol*1);
+  }
+  
 }
 
 
@@ -390,12 +403,13 @@ function waterWave_draw() {
 //--------------------------
 function waterBubble_push(x, y) {
   
-  let n = random(2,5);
+  let n = random(1,4);
   let m = random(height/5,height/3);
   for(let i = 0; i < n; i++){
     let a = map(i, 0, n, 0, m)
     bubble.push(new WaterBubble(x, y));
   }
+  touchSound(2);
 }
 
 function waterBubble_draw(){
