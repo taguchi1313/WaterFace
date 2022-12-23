@@ -8,7 +8,7 @@ let v;
 // 音素材
 let bgm_00,bgm_01,bgm_02,bgm_03;
 let sound = [];
-let soundVol = 0.03;
+let soundVol = 0.3;
 // 音楽カウント
 let bgmCount,bgmPart;
 let bgmCountSet = 30*3.8;
