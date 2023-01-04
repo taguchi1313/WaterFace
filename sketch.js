@@ -272,7 +272,7 @@ function keyPressed(){
   if (keyCode === DOWN_ARROW) {
     soundVol = 0.03;
     console.log("soundVol = 0.03");
-  }else if(keyCode === DOWN_ARROW) {
+  }else if(keyCode === UP_ARROW) {
     soundVol = 0.5;
     console.log("soundVol = 0.5");
   } else if(key === 'z') {
