@@ -64,6 +64,7 @@ function draw() {
   if(start){
     mainDraw();
     touchOnOff();
+    sleepCount = 0;
   }
 }
 
@@ -93,19 +94,22 @@ function touchOnMoment(){
   // 記録
   mouseXY = [mouseX, mouseY];
   // スリープモードをオフ
-  if(sleep){sleep = false;} 
+  if(sleep){sleep = false;}
+  sleepCount = 0;
 }
 
 //--------------------
 // touchOnOff 離した瞬間
 //--------------------
 function touchOffMoment(){
-  if(mouseCount < 5 && stream.length < 7){
+  let stream_amount = stream[0].length + stream[1].length + stream[2].length + stream[3].length;
+  if(mouseCount < 5 && stream_amount < 6){
     toutchDraw("stream");
   }else{
     toutchDraw("ripple");
   }
   mouseCount=0;
+  sleepCount = 0;
 }
 
 //--------------------
