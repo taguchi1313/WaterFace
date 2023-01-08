@@ -24,7 +24,7 @@ let wave = [];
 //--------------------------
 
 function waterStream_push(mX, mY, auto) { 
-  
+
   let a = [0,0,0,0,0,0];
   
   for(let i = 0; i < stream.length; i++){
@@ -60,17 +60,14 @@ function waterStream_push(mX, mY, auto) {
     // ## 手動再生
     if(!auto){
       stream[3].push(new WaterStream(mX, mY, "main", 0, 0, 3));
-      console.log("手動 主流 front");
     // ## 自動再生
     } else {
       // ### 後ろ
       if(random() < 0.3){
         stream[0].push(new WaterStream(mX, mY, "main", 0, 0, 0));
-        console.log("自動 主流 back");
       // ### 手前
       }else{
         stream[1].push(new WaterStream(mX, mY, "main", 0, 0, 1));
-        console.log("自動 主流 front");
       }
     }
     // 主流SE再生
@@ -85,21 +82,17 @@ function waterStream_push(mX, mY, auto) {
         stream[a[5]].push(new WaterStream(a[1], a[2], "branch",a[3], a[4], a[5]));
       } else if(random() < 0.3){
         stream[2].push(new WaterStream(a[1], a[2], "branch",a[3], a[4], 2));
-        console.log("手動 分岐 back");
       // ### 手前
       } else {
         stream[3].push(new WaterStream(a[1], a[2], "branch",a[3], a[4], 3));
-        console.log("手動 分岐 front");
       }
     // ## 自動再生
     }else {
       if(random() < 0.3 || a[5]==0){
          stream[0].push(new WaterStream(a[1], a[2], "branch",a[3], a[4], 0));
-        console.log("自動 分岐 back");
       // ### 手前
       } else {
          stream[1].push(new WaterStream(a[1], a[2], "branch",a[3], a[4], 1));
-        console.log("自動 分岐 front");
       }
       
     }
@@ -110,26 +103,6 @@ function waterStream_push(mX, mY, auto) {
 }
 
 function waterStream_draw() {
-  /*
-  // オブジェクトの削除
-  for(let i = 0; i < stream_goal.length; i ++ ){
-    for(let j = 0; j < stream_goal[i].length; j++ ){
-      if (stream_goal[i][j].delete) {
-       stream_goal[i].splice(j, 1);
-  } } }
-  // ゴール到達オブジェクトの順番整理 
-  for (let i = 0; i < stream.length; i++) {
-    for (let j = 0; j < stream[i].length; j++) {
-      if (stream[i][j].phaseState == "goal") {
-        stream_goal[i].push(stream[i][j]);
-        stream[i].splice(j, 1);
-  } } }
-  // goal到達オブジェクトの描画
-  for(let i = 0; i < stream_goal.length; i ++ ){
-    for(let j = 0; j < stream_goal[i].length; j++ ){
-       stream_goal[i][j].draw();
-  } }
-  */
   // オブジェクトの削除
   for (let i = 0; i < stream.length; i++) {
     for (let j = 0; j < stream[i].length; j++) {
