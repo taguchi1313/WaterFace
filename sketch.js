@@ -26,7 +26,7 @@ let seed = [];
 let streamLayer = [];
 
 //　ブラウザをリサイズしたら再読み込み
-window.onresise = function(){
+window.onresize = function(){
   location.reload();
 };
 
