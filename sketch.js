@@ -26,16 +26,17 @@ let seed = [];
 let streamLayer = [];
 
 //　ブラウザをリサイズしたら再読み込み
-window.onresize = function(){
-  location.reload();
-};
+//window.onresize = function(){
+//  location.reload();
+//};
 
 //--------------------
 // 初回起動
 //--------------------
 function setup() {
   // 基本設定
-  createCanvas(windowWidth, windowHeight);
+  //createCanvas(windowWidth, windowHeight);
+  createCanvas(1112, 1437);
   colorMode(RGB);
       noStroke();
   frameRate(30);
